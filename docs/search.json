@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html#background",
+    "href": "index.html#background",
+    "title": "AI for Pancreas Cancer",
+    "section": "Background",
+    "text": "Background\nIn this dataset, collected at Indiana University School of Medicine, the researchers gathered a series of biomarkers from the urine of three groups of patients:\n\nHealthy controls\nPatients with non-cancerous pancreatic conditions, like chronic pancreatitis\nPatients with pancreatic ductal adenocarcinoma\n\nThe age and sex of the patients are also recorded. The goal was to develop an accurate way to identify patients with pancreatic cancer."
+  },
+  {
+    "objectID": "index.html#the-4-urinary-biomarkers",
+    "href": "index.html#the-4-urinary-biomarkers",
+    "title": "AI for Pancreas Cancer",
+    "section": "The 4 Urinary Biomarkers",
+    "text": "The 4 Urinary Biomarkers\nThe 4 Urinary Biomarkers collected and its description is as follow:\n\nCreatinine is a protein that is often used as an indicator of kidney function.\nYVLE1 is lymphatic vessel endothelial hyaluronan receptor 1, a protein that may play a role in tumor metastasis\nREG1B is a protein that may be associated with pancreas regeneration\nTFF1 is trefoil factor 1, which may be related to regeneration and repair of the urinary tract"
+  },
+  {
+    "objectID": "index.html#task",
+    "href": "index.html#task",
+    "title": "AI for Pancreas Cancer",
+    "section": "Task",
+    "text": "Task\nOur goal is to build an AI algorithm that can predict patients that has pancreas cancers and those who don’t, as accurately as possible.\nLet’s start by exploring the dataset to understand the task better!\n\\(\\,\\)"
+  },
+  {
+    "objectID": "01_Section_1.html#overview",
+    "href": "01_Section_1.html#overview",
+    "title": "1  Understanding the Data",
+    "section": "1.1 Overview",
+    "text": "1.1 Overview\nBefore we begin our analysis on the pancreatic cancer dataset, it is essential to thoroughly understand the dataset. This includes examining the dataset’s structure, understanding the predictors, identifying any missing values, and recognizing the significance of each column. This foundational understanding will help us make informed decisions during our analysis and ensure the accuracy and reliability of our findings."
+  },
+  {
+    "objectID": "01_Section_1.html#a-look-at-the-dataset",
+    "href": "01_Section_1.html#a-look-at-the-dataset",
+    "title": "1  Understanding the Data",
+    "section": "1.2 A look at the Dataset",
+    "text": "1.2 A look at the Dataset\nThe dataset contains 590 rows and 10 columns. Each row represents a unique patient, and each column provides specific information about the patient’s diagnosis, treatment, and other relevant factors.\nHere’s the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat’s our target variable?\n\n\n\n\n\nOur Target Variable is the diagnosis column. Diagnosis = 0 indicates patient that does not have cancer and diagnosis = 1 indicates that patient is diagnosed with Pancreatic ductal adenocarcinoma (PDAC).\n\n\n\n\n1.2.1 Columns\nThere are 10 columns in the dataset, namely\n\nPatient Cohort : Details which patients cohort a particular patient is from. In our case, there are 2 cohorts, Cohort 1 and Cohort 2\nAge : Details the age of the patient\nSex : Details the gender of the patient. F stands for Female, M stands for maLE\nDiagnosis : Details the diagnosis of the patient. 1 stands for diagnosed with Pancreatic ductal adenocarcinoma (PDAC) and 0 stands for not-diagnosed with cancer.\nplasma CA19_9 : Details the amount of a protein called CA 19-9 in the blood, which is often used in monitoring pancreatic cancer\nCreatinine : Details the level of creatinine of the patient, which is a protein that is often used as an indicator of kidney function.\nYVLE1 : Details the level of YVLE1, a urinaly biomarker, which may play a role in tumor metastasis\nREG1A : Details the level of REG1A, which may be associated with pancreas regeneration\nREG1B : Details the level of REG1B, a urinary biomarker, which may be associated with pancreas regeneration\nTFF1 : Details the level of trefoil factor 1, which may be related to regeneration and repair of the urinary tract\n\n\n\n\n\n\n\nCan you attempt to just look at the data and spot some relationship?\n\n\n\nIn the next section, we will visualize the columns to test whethere there are any observable patterns or interesting trends that might give insight before building our AI model.\n\\(\\,\\)"
+  },
+  {
+    "objectID": "02_Section_2.html#visualization",
+    "href": "02_Section_2.html#visualization",
+    "title": "2  Visualizing the Data",
+    "section": "2.1 Visualization",
+    "text": "2.1 Visualization\nFill description."
+  },
+  {
+    "objectID": "02_Section_2.html#univariate-categorial-variables",
+    "href": "02_Section_2.html#univariate-categorial-variables",
+    "title": "2  Visualizing the Data",
+    "section": "2.2 Univariate: Categorial Variables",
+    "text": "2.2 Univariate: Categorial Variables\nFill description.\n\n\n\n\n\n\nSelect a categorical column to visualize:\n\ndata = FileAttachment(\"cleaned_dataset.csv\").csv({ typed: true })\ncat_columns = ['patient_cohort', 'diagnosis', 'sex']\nviewof selected_column_cat = Inputs.radio(cat_columns, {value: cat_columns[0]})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngrouped_data = d3.groups(data, d => d[selected_column_cat]).map(([key, values]) => ({key, count: values.length}));\n\nPlot.plot({\n  marks: [\n    Plot.barY(grouped_data, {x: \"key\", y: \"count\", fill: \"steelblue\"}),\n    Plot.text(grouped_data, {x: \"key\", y: \"count\", text: d => d.count, dy: -10})\n  ],\n  x: {\n    label: selected_column_cat\n  },\n  y: {\n    label: \"Count\"\n  },\n  color: {\n    legend: false\n  }\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2.2.1 What did you observe?\n\n\n\n\n\n\nWhat did you observe about patient cohort and sex?\n\n\n\n\n\nWe see that they are approximately equal amount of female and males, and even though cohort 1 has more patients than cohort 2, there are approximately similar!\n\n\n\n\n\n\n\n\n\nWhat did you observe about diagnosis (target variable)?\n\n\n\n\n\nWe see that around 400 patients who does not have cancers, while only approximately 180 patients have cancers! That implies only approximately 30% of our data is pancreatic cancer patients!\nBrain teaser: What impact it might have? \nHint: Think about evalaution metrics, and whether it is enough information to train a classifiers!"
+  },
+  {
+    "objectID": "02_Section_2.html#univariate-continuous-variables",
+    "href": "02_Section_2.html#univariate-continuous-variables",
+    "title": "2  Visualizing the Data",
+    "section": "2.3 Univariate: Continuous Variables",
+    "text": "2.3 Univariate: Continuous Variables\nFill description.\n\n\n\n\n\n\nSelect a continuous column to visualize:\n\ncont_columns = ['age', 'LYVE1', 'REG1B', 'TFF1', 'REG1A', 'creatinine', 'plasma_CA19_9']\nviewof selected_column = Inputs.radio(cont_columns, {value: 'LYVE1'})\nviewof bin_count = Inputs.range([1, 50], {step: 1, value: 15, label: \"Number of Bins\"})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlot.plot({\n  marks: [\n    Plot.rectY(data, Plot.binX({y: \"count\"}, {x: selected_column, fill: \"steelblue\", thresholds: bin_count}))\n  ],\n  x: {\n    label: selected_column\n  },\n  y: {\n    label: \"Count\"\n  },\n  color: {\n    legend: false\n  }\n})\n\n\n\n\n\n\nFill thoughts."
+  },
+  {
+    "objectID": "02_Section_2.html#bivariate-categorial-variables",
+    "href": "02_Section_2.html#bivariate-categorial-variables",
+    "title": "2  Visualizing the Data",
+    "section": "2.4 Bivariate: Categorial Variables",
+    "text": "2.4 Bivariate: Categorial Variables\nFill description.\n\n\n\n\n\n\nSelect a column to compare against diagnosis:\n\nbivariate_cat_columns = ['sex', 'patient_cohort']\nviewof selected_bivariate_cat_column = Inputs.radio(bivariate_cat_columns, {value: bivariate_cat_columns[0]})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nfunction calculateGroupedPercentages(data, groupColumn, stackColumn) {\n  const grouped = d3.rollup(data, v => v.length, d => d[groupColumn], d => d[stackColumn]);\n  const totals = d3.rollup(data, v => v.length, d => d[groupColumn]);\n\n  return Array.from(grouped, ([key, values]) => {\n    const total = totals.get(key);\n    return Array.from(values, ([stackKey, count]) => ({\n      group: key,\n      stack: stackKey,\n      count,\n      percentage: (count / total) * 100\n    }));\n  }).flat();\n}\n\ngrouped_bivariate_data = calculateGroupedPercentages(data, \"diagnosis\", selected_bivariate_cat_column);\n\nPlot.plot({\n  marks: [\n    Plot.barY(grouped_bivariate_data, {\n      x: d => d.group + \":\" + d.stack,\n      y: \"percentage\",\n      fill: \"stack\",\n      title: d => `${d.stack}: ${d.percentage.toFixed(1)}%`\n    }),\n    Plot.text(grouped_bivariate_data, {\n      x: d => d.group + \":\" + d.stack,\n      y: d => d.percentage,\n      text: d => `${d.percentage.toFixed(1)}%`,\n      dy: -4\n    })\n  ],\n  x: {\n    label: \"Diagnosis\",\n    domain: Array.from(new Set(grouped_bivariate_data.map(d => d.group + \":\" + d.stack))),\n    tickFormat: d => d.split(\":\")[0] // Format ticks to show only the group\n  },\n  y: {\n    label: \"Percentage\"\n  },\n  color: {\n    legend: true\n  }\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2.4.1 What did you observe?\nFill thoughts."
+  },
+  {
+    "objectID": "02_Section_2.html#bivariate-continuous-variables",
+    "href": "02_Section_2.html#bivariate-continuous-variables",
+    "title": "2  Visualizing the Data",
+    "section": "2.5 Bivariate: Continuous Variables",
+    "text": "2.5 Bivariate: Continuous Variables\nFill description about heatmap.\n\n\n\n\n\n\nSelect Continuous Variables for Correlation Heatmap:\n\nbivariate_cont_columns = ['age', 'LYVE1', 'REG1B', 'TFF1', 'REG1A', 'creatinine', 'plasma_CA19_9']\nviewof selected_bivariate_cont_columns = Inputs.checkbox(bivariate_cont_columns, {value: bivariate_cont_columns})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nfunction calculateCorrelationMatrix(data, selectedColumns) {\n  const n = selectedColumns.length;\n  const correlationMatrix = Array.from({ length: n }, () => Array(n).fill(0));\n\n  function pearsonCorrelation(x, y) {\n    const meanX = d3.mean(x);\n    const meanY = d3.mean(y);\n    const diffX = x.map(d => d - meanX);\n    const diffY = y.map(d => d - meanY);\n    const numerator = d3.sum(diffX.map((d, i) => d * diffY[i]));\n    const denominator = Math.sqrt(d3.sum(diffX.map(d => d * d)) * d3.sum(diffY.map(d => d * d)));\n    return numerator / denominator;\n  }\n\n  for (let i = 0; i < n; i++) {\n    for (let j = 0; j < n; j++) {\n      const col1 = selectedColumns[i];\n      const col2 = selectedColumns[j];\n      const values1 = data.map(d => d[col1]);\n      const values2 = data.map(d => d[col2]);\n      const correlation = pearsonCorrelation(values1, values2);\n      correlationMatrix[i][j] = correlation;\n    }\n  }\n\n  return correlationMatrix;\n}\n\ncorrelation_matrix = calculateCorrelationMatrix(data, selected_bivariate_cont_columns);\ncorrelation_data = selected_bivariate_cont_columns.flatMap((col1, i) =>\n  selected_bivariate_cont_columns.map((col2, j) => ({\n    x: col1,\n    y: col2,\n    value: correlation_matrix[i][j]\n  }))\n);\n\nPlot.plot({\n  marks: [\n    Plot.cell(correlation_data, {x: \"x\", y: \"y\", fill: \"value\", title: d => d.value.toFixed(2)}),\n    Plot.text(correlation_data, {x: \"x\", y: \"y\", text: d => d.value.toFixed(2), dy: 0, textAnchor: \"middle\"})\n  ],\n  x: {\n    domain: selected_bivariate_cont_columns,\n    label: \"Variables\"\n  },\n  y: {\n    domain: selected_bivariate_cont_columns,\n    label: \"Variables\"\n  },\n  color: {\n    type: \"linear\",\n    scheme: \"blues\",\n    label: \"Correlation\"\n  },\n  width: 600,\n  height: 600\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2.5.1 What did you observe?\nFill thoughts.\n\\(\\,\\)"
+  }
+]

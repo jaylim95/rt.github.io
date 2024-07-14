@@ -1,0 +1,58 @@
+---
+title: "Understanding the Data"
+execute:
+  echo: false
+
+---
+
+## Overview
+
+Before we begin our analysis on the pancreatic cancer dataset, it is essential to thoroughly understand the dataset. This includes examining the dataset's structure, understanding the predictors, identifying any missing values, and recognizing the significance of each column. This foundational understanding will help us make informed decisions during our analysis and ensure the accuracy and reliability of our findings.
+
+
+## A look at the Dataset
+
+The dataset contains **590** rows and **10** columns. Each row represents a unique patient, and each column provides specific information about the patient's diagnosis, treatment, and other relevant factors.
+
+Here's the dataset:
+
+
+```{r}
+library(readr)
+library(DT)
+data_r <- read_csv("cleaned_dataset.csv",show_col_types = FALSE)
+datatable(data_r)
+```
+
+::: {.callout-tip collapse="true" appearance="simple"}
+
+## What's our target variable?
+
+Our Target Variable is the diagnosis column. Diagnosis = 0 indicates patient that does not have cancer and diagnosis = 1 indicates that patient is diagnosed with Pancreatic ductal adenocarcinoma (PDAC).
+
+:::
+
+
+### Columns
+
+
+There are 10 columns in the dataset, namely
+
+- *Patient Cohort* : Details which patients cohort a particular patient is from. In our case, there are 2 cohorts, Cohort 1 and Cohort 2
+- *Age* : Details the age of the patient
+- *Sex* : Details the gender of the patient. F stands for Female, M stands for maLE
+- *Diagnosis* : Details the diagnosis of the patient. 1 stands for diagnosed with Pancreatic ductal adenocarcinoma (PDAC) and 0 stands for not-diagnosed with cancer.
+- *plasma CA19_9* : Details the amount of a protein called CA 19-9 in the blood, which is often used in monitoring pancreatic cancer
+- *Creatinine* : Details the level of creatinine of the patient, which is a protein that is often used as an indicator of kidney function.
+- *YVLE1* : Details the level of YVLE1, a urinaly biomarker, which may play a role in tumor metastasis
+- *REG1A* : Details the level of REG1A, which may be associated with pancreas regeneration
+- *REG1B* : Details the level of REG1B, a urinary biomarker, which may be associated with pancreas regeneration
+- *TFF1* : Details the level of trefoil factor 1, which may be related to regeneration and repair of the urinary tract
+
+::: {.callout-tip appearance="simple"}
+Can you attempt to just look at the data and spot some relationship?
+:::
+
+In the next section, we will visualize the columns to test whethere there are any observable patterns or interesting trends that might give insight before building our AI model.
+
+$\,$

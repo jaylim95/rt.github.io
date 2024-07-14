@@ -1,0 +1,36 @@
+project:
+  type: book
+  output-dir: docs
+
+execute:
+  freeze: auto
+  
+book:
+  title: "AI for Pancreas Cancer"
+  favicon: assets/img/cs50duck.jpeg
+  output-file: "users-guide"
+  reader-mode: true
+  public-url: https://zadchin.github.io/CS50Section/
+  repo-url: https://github.com/zadchin/CS50Section
+  repo-actions: [issue]
+  chapters:
+    - index.qmd
+    - 01_Section_1.qmd
+    - 02_Section_2.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    code-block-border-left: true
+    theme:
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
+    css: style.css
+    
+    include-before-body:
+      - _dollars.tex
+      - _bold_html.tex
+      - _macros.tex
+      - _dollars.tex
+        

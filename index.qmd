@@ -1,0 +1,32 @@
+
+Pancreatic ductal adenocarcinoma (PDAC) is one of the deadliest cancers, with around $9%$ of patients surviving $>5$ years is an extremely deadly type of cancer. However, if pancreatic cancer is caught early, the odds of surviving are much better. Unfortunately, many cases of pancreatic cancer show no symptoms until the cancer has spread throughout the body. An AI based diagnostic test to identify people with pancreatic cancer could be enormously helpful.
+
+## Background {.unnumbered}
+
+In this [dataset](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1003489), collected at Indiana University School of Medicine, the researchers gathered a series of biomarkers from the urine of three groups of patients:
+
+- Healthy controls
+- Patients with non-cancerous pancreatic conditions, like chronic pancreatitis
+- Patients with pancreatic ductal adenocarcinoma
+
+The age and sex of the patients are also recorded. The goal was to develop an accurate way to identify patients with pancreatic cancer.
+
+## The 4 Urinary Biomarkers {.unnumbered}
+
+The 4 Urinary Biomarkers collected and its description is as follow:
+
+- Creatinine is a protein that is often used as an indicator of kidney function.
+- YVLE1 is lymphatic vessel endothelial hyaluronan receptor 1, a protein that may play a role in tumor metastasis
+- REG1B is a protein that may be associated with pancreas regeneration
+- TFF1 is trefoil factor 1, which may be related to regeneration and repair of the urinary tract
+
+
+## Task {.unnumbered}
+
+Our goal is to build an AI algorithm that can predict patients that has pancreas cancers and those who don't, as accurately as possible. 
+
+Let's start by exploring the dataset to understand the task better!
+
+
+
+$\,$
