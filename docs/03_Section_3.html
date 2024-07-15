@@ -233,7 +233,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"options":{"comment":"","results":"markup","message":"true","warning":"true","dpi":72,"fig-cap":"","context":"interactive","label":"","fig-height":5,"read-only":"false","output":"true","classes":"","out-height":"","fig-width":7,"autorun":"","out-width":"700px"},"id":1,"code":"import pandas as pd\nfrom sklearn.model_selection import train_test_split\n\ndata_url = \"https://raw.githubusercontent.com/zadchin/RT-test/master/final_dataset.csv\"\ndata = pd.read_csv(data_url)\nfeatures = data.drop(\"diagnosis\", axis = 1) \ntarget = data.diagnosis\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size = 0.3, random_state=42)"},{"options":{"comment":"","results":"markup","message":"true","warning":"true","dpi":72,"fig-cap":"","context":"interactive","label":"","fig-height":5,"read-only":"false","output":"true","classes":"","out-height":"","fig-width":7,"autorun":"","out-width":"700px"},"id":2,"code":"from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score\nimport numpy as np\ny_pred_baseline = [0] * len(y_test)\nprint(\"Baseline (All Negative) Model\")\nprint(\"Accuracy: \", np.round(accuracy_score(y_test, y_pred_baseline), 2))\nprint(\"Precision: \", np.round(precision_score(y_test, y_pred_baseline, zero_division=0),2))\nprint(\"Recall: \", np.round(recall_score(y_test, y_pred_baseline, zero_division=0),2))\nprint(\"F1 Score: \", np.round(f1_score(y_test, y_pred_baseline, zero_division=0),2))"},{"options":{"comment":"","results":"markup","message":"true","warning":"true","dpi":72,"fig-cap":"","context":"interactive","label":"","fig-height":5,"read-only":"false","output":"true","classes":"","out-height":"","fig-width":7,"autorun":"","out-width":"700px"},"id":3,"code":"np.random.seed(42)\ny_pred_random = np.random.randint(2, size=len(y_test))\ny_pred_baseline = [0] * len(y_test)\nprint(\"Baseline (Random Guessing) Model\")\nprint(\"Accuracy: \", np.round(accuracy_score(y_test, y_pred_random), 2))\nprint(\"Precision: \", np.round(precision_score(y_test, y_pred_random, zero_division=0), 2))\nprint(\"Recall: \", np.round(recall_score(y_test, y_pred_random, zero_division=0), 2))\nprint(\"F1 Score: \", np.round(f1_score(y_test, y_pred_random, zero_division=0), 2))"}];
+globalThis.qpyodideCellDetails = [{"options":{"label":"","fig-height":5,"context":"interactive","autorun":"","message":"true","fig-width":7,"comment":"","warning":"true","results":"markup","fig-cap":"","read-only":"false","dpi":72,"output":"true","classes":"","out-width":"700px","out-height":""},"code":"import pandas as pd\nfrom sklearn.model_selection import train_test_split\n\ndata_url = \"https://raw.githubusercontent.com/zadchin/RT-test/master/final_dataset.csv\"\ndata = pd.read_csv(data_url)\nfeatures = data.drop(\"diagnosis\", axis = 1) \ntarget = data.diagnosis\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size = 0.3, random_state=42)","id":1},{"options":{"label":"","fig-height":5,"context":"interactive","autorun":"","message":"true","fig-width":7,"comment":"","warning":"true","results":"markup","fig-cap":"","read-only":"false","dpi":72,"output":"true","classes":"","out-width":"700px","out-height":""},"code":"from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score\nimport numpy as np\ny_pred_baseline = [0] * len(y_test)\nprint(\"Baseline (All Negative) Model\")\nprint(\"Accuracy: \", np.round(accuracy_score(y_test, y_pred_baseline), 2))\nprint(\"Precision: \", np.round(precision_score(y_test, y_pred_baseline, zero_division=0),2))\nprint(\"Recall: \", np.round(recall_score(y_test, y_pred_baseline, zero_division=0),2))\nprint(\"F1 Score: \", np.round(f1_score(y_test, y_pred_baseline, zero_division=0),2))","id":2},{"options":{"label":"","fig-height":5,"context":"interactive","autorun":"","message":"true","fig-width":7,"comment":"","warning":"true","results":"markup","fig-cap":"","read-only":"false","dpi":72,"output":"true","classes":"","out-width":"700px","out-height":""},"code":"np.random.seed(42)\ny_pred_random = np.random.randint(2, size=len(y_test))\ny_pred_baseline = [0] * len(y_test)\nprint(\"Baseline (Random Guessing) Model\")\nprint(\"Accuracy: \", np.round(accuracy_score(y_test, y_pred_random), 2))\nprint(\"Precision: \", np.round(precision_score(y_test, y_pred_random, zero_division=0), 2))\nprint(\"Recall: \", np.round(recall_score(y_test, y_pred_random, zero_division=0), 2))\nprint(\"F1 Score: \", np.round(f1_score(y_test, y_pred_random, zero_division=0), 2))","id":3}];
 
 
 </script>
@@ -661,7 +661,7 @@ $$
 <p>We are going to investigate 4 metrics to evalaute the performance of our machine learning algorithms, namely, accuracy, precision, recall and F1 score. We will go through it one-by-one in the following:</p>
 <section id="accuracy" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="accuracy"><span class="header-section-number">3.2.1</span> Accuracy</h3>
-<p>The ratio of correctly predicted instances to the total instances. Mathematically it is defined as [ =(TP+TN)/Total]</p>
+<p>The ratio of correctly predicted instances to the total instances. Mathematically it is defined as <span class="math display">\[\text{Accuracy} =\frac{TP+TN}{\text{Total}}\]</span></p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -700,19 +700,19 @@ What is the impact of false positive and false negative in diagnosing pancreas c
 </div>
 </div>
 <p>Thus, <strong>precision, recall and F1 score are important metrics to help us to get a hollistic picture of our model performance.</strong></p>
-<p>Precision is defined as the ratio of true positive predictions to the total predicted positives. Mathematically, [ =]</p>
+<p>Precision is defined as the ratio of true positive predictions to the total predicted positives. Mathematically, <span class="math display">\[\text{Precision} =\frac{TP}{TP+FP}\]</span></p>
 <p>Precision tells us how many of the patients predicted to have PDAC actually have the disease. High precision means fewer false positives.</p>
 </section>
 <section id="recall" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="recall"><span class="header-section-number">3.2.3</span> Recall</h3>
 <p>Recall is defined as the ratio of true positive predictions to the total actual positives. Mathematically, it is defined as</p>
-<p>[ = ]</p>
+<p><span class="math display">\[\text{Recall} = \frac{TP}{TP+FN}\]</span></p>
 <p>Recall (or sensitivity) indicates how many patients with PDAC are correctly identified by the model. High recall means fewer false negatives, which is crucial for medical diagnosis.</p>
 </section>
 <section id="f1-score" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="f1-score"><span class="header-section-number">3.2.4</span> F1 Score</h3>
 <p>F1 Score is the harmonic mean of precision and recall. Mathematically, it is defined as</p>
-<p>[ = 2 ]</p>
+<p><span class="math display">\[\text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}\]</span></p>
 <p>The F1 Score provides a balance between precision and recall. It is particularly useful when the class distribution is imbalanced, as it considers both false positives and false negatives.</p>
 </section>
 </section>

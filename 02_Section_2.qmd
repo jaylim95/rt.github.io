@@ -246,6 +246,30 @@ Plot.plot({
 
 ```
 
+### Try to match it on a scatterplot!
+
+::: {.callout-tip appearance="simple"}
+
+Select a X-Axis and Y-Axis Column:
+
+```{ojs}
+viewof x_column = Inputs.radio(bivariate_cont_columns, {value: 'age'})
+viewof y_column = Inputs.radio(bivariate_cont_columns, {value: 'LYVE1'})
+Plot.plot({
+  marks: [
+    Plot.dot(data, {x: x_column, y: y_column, fill: "steelblue"})
+  ],
+  x: {
+    label: x_column
+  },
+  y: {
+    label: y_column
+  },
+  color: {
+    legend: false
+  }
+})
+```
 
 ### What did you observe?
 

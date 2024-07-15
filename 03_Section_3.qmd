@@ -33,7 +33,7 @@ We are going to investigate 4 metrics to evalaute the performance of our machine
 
 ### Accuracy
 
-The ratio of correctly predicted instances to the total instances. Mathematically it is defined as \[\text{Accuracy} =(TP+TN)/Total\]
+The ratio of correctly predicted instances to the total instances. Mathematically it is defined as $$\text{Accuracy} =\frac{TP+TN}{\text{Total}}$$
 
 
 ::: {.callout-note collapse="true" appearance="simple"}
@@ -63,7 +63,7 @@ Thus, **precision, recall and F1 score are important metrics to help us to get a
 
 
 Precision is defined as the ratio of true positive predictions to the total predicted positives. Mathematically,
-\[\text{Precision} =\frac{TP}{TP+FP}\]
+$$\text{Precision} =\frac{TP}{TP+FP}$$
 
 Precision tells us how many of the patients predicted to have PDAC actually have the disease. High precision means fewer false positives.
  
@@ -72,7 +72,7 @@ Precision tells us how many of the patients predicted to have PDAC actually have
 
 Recall is defined as the ratio of true positive predictions to the total actual positives. Mathematically, it is defined as 
 
-\[\text{Recall} = \frac{TP}{TP+FN}\]
+$$\text{Recall} = \frac{TP}{TP+FN}$$
 
 Recall (or sensitivity) indicates how many patients with PDAC are correctly identified by the model. High recall means fewer false negatives, which is crucial for medical diagnosis.
 
@@ -81,7 +81,7 @@ Recall (or sensitivity) indicates how many patients with PDAC are correctly iden
 
 F1 Score is the harmonic mean of precision and recall. Mathematically, it is defined as 
 
-\[\text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}\]
+$$\text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$$
 
 The F1 Score provides a balance between precision and recall. It is particularly useful when the class distribution is imbalanced, as it considers both false positives and false negatives.
 
