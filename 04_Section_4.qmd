@@ -24,13 +24,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import precision_score, accuracy_score, recall_score, f1_score, roc_auc_score, confusion_matrix
 
-data_url = "https://raw.githubusercontent.com/zadchin/RT-test/master/cleaned_dataset.csv"
+data_url = "https://raw.githubusercontent.com/zadchin/RT-test/master/final_dataset.csv"
 data = pd.read_csv(data_url)
 features = data.drop("diagnosis", axis = 1) 
 target = data.diagnosis
 X_train, X_test, y_train, y_test = train_test_split(features, target, test_size = 0.3, random_state=42)
-print(X_train.shape)
-print(X_test.shape)
+print("X train shape: ", X_train.shape)
+print("X test shape: ", X_test.shape)
 ```
 
 
@@ -41,25 +41,31 @@ Next, we will run logistic regression on our training dataset, then compute the 
 
 
 ```{pyodide-python}
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import precision_score, accuracy_score, recall_score, f1_score, roc_auc_score, confusion_matrix
-
-data_url = "https://raw.githubusercontent.com/zadchin/RT-test/master/cleaned_dataset.csv"
-data = pd.read_csv(data_url)
-features = data.drop("diagnosis", axis = 1) 
-target = data.diagnosis
-X_train, X_test, y_train, y_test = train_test_split(features, target, test_size = 0.3, random_state=42)
-
-
-## Logistic Regression Starts here
+import numpy as np
 LR_model = LogisticRegression(max_iter=10000, C=1.0, class_weight="balanced")
 LR_model.fit(X_train, y_train)
 y_pred_LR = LR_model.predict(X_test)
-print(accuracy_score(y_test, y_pred_LR))
-
+print("Accuracy: ", np.round(accuracy_score(y_test, y_pred_LR), 2))
+print("Precision: ",np.round(precision_score(y_test, y_pred_LR), 2))
+print("Recall: ", np.round(recall_score(y_test, y_pred_LR), 2))
+print("F1 Score: ", np.round(f1_score(y_test, y_pred_LR), 2))
 ```
 
+::: {.callout-tip appearance="simple"}
+
+Can you try to delete the class weight and changing the C-value to observe what happened to the performance of the algorithm?
+:::
+
+## Feature Importance
+
+```{pyodide-python}
+feature_importance = pd.DataFrame({
+    'Feature': X_train.columns,
+    'Importance': LR_model.coef_[0]
+})
+
+feature_importance = feature_importance.sort_values(by='Importance', ascending=False)
+feature_importance
+```
 
 $\,$

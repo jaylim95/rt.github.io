@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Logistic Regression – AI for Pancreas Cancer</title>
+<title>5&nbsp; Decision Tree – AI for Pancreas Cancer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05_Section_5.html" rel="next">
-<link href="./03_Section_3.html" rel="prev">
+<link href="./04_Section_4.html" rel="prev">
 <link href="./assets/img/cs50duck.jpeg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -233,7 +232,7 @@ globalThis.qpyodideCustomizedPyodideOptions = {
 }
 
 // Store cell data
-globalThis.qpyodideCellDetails = [{"code":"import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import precision_score, accuracy_score, recall_score, f1_score, roc_auc_score, confusion_matrix\n\ndata_url = \"https://raw.githubusercontent.com/zadchin/RT-test/master/final_dataset.csv\"\ndata = pd.read_csv(data_url)\nfeatures = data.drop(\"diagnosis\", axis = 1) \ntarget = data.diagnosis\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size = 0.3, random_state=42)\nprint(\"X train shape: \", X_train.shape)\nprint(\"X test shape: \", X_test.shape)","options":{"autorun":"","dpi":72,"output":"true","label":"","message":"true","fig-width":7,"warning":"true","read-only":"false","fig-cap":"","results":"markup","out-width":"700px","classes":"","context":"interactive","fig-height":5,"comment":"","out-height":""},"id":1},{"code":"import numpy as np\nLR_model = LogisticRegression(max_iter=10000, C=1.0, class_weight=\"balanced\")\nLR_model.fit(X_train, y_train)\ny_pred_LR = LR_model.predict(X_test)\nprint(\"Accuracy: \", np.round(accuracy_score(y_test, y_pred_LR), 2))\nprint(\"Precision: \",np.round(precision_score(y_test, y_pred_LR), 2))\nprint(\"Recall: \", np.round(recall_score(y_test, y_pred_LR), 2))\nprint(\"F1 Score: \", np.round(f1_score(y_test, y_pred_LR), 2))","options":{"autorun":"","dpi":72,"output":"true","label":"","message":"true","fig-width":7,"warning":"true","read-only":"false","fig-cap":"","results":"markup","out-width":"700px","classes":"","context":"interactive","fig-height":5,"comment":"","out-height":""},"id":2},{"code":"feature_importance = pd.DataFrame({\n    'Feature': X_train.columns,\n    'Importance': LR_model.coef_[0]\n})\n\nfeature_importance = feature_importance.sort_values(by='Importance', ascending=False)\nfeature_importance","options":{"autorun":"","dpi":72,"output":"true","label":"","message":"true","fig-width":7,"warning":"true","read-only":"false","fig-cap":"","results":"markup","out-width":"700px","classes":"","context":"interactive","fig-height":5,"comment":"","out-height":""},"id":3}];
+globalThis.qpyodideCellDetails = [{"options":{"warning":"true","dpi":72,"comment":"","read-only":"false","context":"interactive","results":"markup","classes":"","autorun":"","label":"","fig-width":7,"fig-height":5,"output":"true","message":"true","out-width":"700px","fig-cap":"","out-height":""},"code":"import pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn import tree\nfrom sklearn.metrics import precision_score, accuracy_score, recall_score, f1_score, roc_auc_score, confusion_matrix\n\ndata_url = \"https://raw.githubusercontent.com/zadchin/RT-test/master/final_dataset.csv\"\ndata = pd.read_csv(data_url)\nfeatures = data.drop(\"diagnosis\", axis = 1) \ntarget = data.diagnosis\nX_train, X_test, y_train, y_test = train_test_split(features, target, test_size = 0.3, random_state=42)\nprint(\"X train shape: \", X_train.shape)\nprint(\"X test shape: \", X_test.shape)","id":1},{"options":{"warning":"true","dpi":72,"comment":"","read-only":"false","context":"interactive","results":"markup","classes":"","autorun":"","label":"","fig-width":7,"fig-height":5,"output":"true","message":"true","out-width":"700px","fig-cap":"","out-height":""},"code":"import numpy as np\nDT_model = tree.DecisionTreeClassifier(max_leaf_nodes=3, max_depth=None,\n                                  class_weight=\"balanced\")\nDT_model = DT_model.fit(X_train, y_train)\ny_pred_DT = DT_model.predict(X_test)\nprint(\"Accuracy: \", np.round(accuracy_score(y_test, y_pred_DT), 2))\nprint(\"Precision: \",np.round(precision_score(y_test, y_pred_DT), 2))\nprint(\"Recall: \",np.round(recall_score(y_test, y_pred_DT), 2))\nprint(\"F1 Score: \", np.round(f1_score(y_test, y_pred_DT), 2))","id":2},{"options":{"warning":"true","dpi":72,"comment":"","read-only":"false","context":"interactive","results":"markup","classes":"","autorun":"","label":"","fig-width":7,"fig-height":5,"output":"true","message":"true","out-width":"700px","fig-cap":"","out-height":""},"code":"feature_names = list(X_train.columns)\ntext_representation = tree.export_text(DT_model, feature_names=feature_names)\nprint(text_representation)","id":3}];
 
 
 </script>
@@ -466,7 +465,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04_Section_4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logistic Regression</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05_Section_5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decision Tree</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -526,13 +525,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_Section_4.html" class="sidebar-item-text sidebar-link active">
+  <a href="./04_Section_4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Section_5.html" class="sidebar-item-text sidebar-link">
+  <a href="./05_Section_5.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decision Tree</span></span></a>
   </div>
 </li>
@@ -546,13 +545,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link active" data-scroll-target="#logistic-regression"><span class="header-section-number">4.1</span> Logistic Regression</a>
-  <ul class="collapse">
-  <li><a href="#quiz-draw-a-line" id="toc-quiz-draw-a-line" class="nav-link" data-scroll-target="#quiz-draw-a-line"><span class="header-section-number">4.1.1</span> Quiz : Draw a line!</a></li>
-  </ul></li>
-  <li><a href="#train-test-split" id="toc-train-test-split" class="nav-link" data-scroll-target="#train-test-split"><span class="header-section-number">4.2</span> Train-Test Split</a></li>
-  <li><a href="#algorithm" id="toc-algorithm" class="nav-link" data-scroll-target="#algorithm"><span class="header-section-number">4.3</span> Algorithm</a></li>
-  <li><a href="#feature-importance" id="toc-feature-importance" class="nav-link" data-scroll-target="#feature-importance"><span class="header-section-number">4.4</span> Feature Importance</a></li>
+  <li><a href="#decision-tree" id="toc-decision-tree" class="nav-link active" data-scroll-target="#decision-tree"><span class="header-section-number">5.1</span> Decision Tree</a></li>
+  <li><a href="#train-test-split" id="toc-train-test-split" class="nav-link" data-scroll-target="#train-test-split"><span class="header-section-number">5.2</span> Train-Test Split</a></li>
+  <li><a href="#algorithm" id="toc-algorithm" class="nav-link" data-scroll-target="#algorithm"><span class="header-section-number">5.3</span> Algorithm</a></li>
+  <li><a href="#visualizing-the-tree" id="toc-visualizing-the-tree" class="nav-link" data-scroll-target="#visualizing-the-tree"><span class="header-section-number">5.4</span> Visualizing the tree</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/zadchin/CS50Section/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -628,7 +624,7 @@ $$
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logistic Regression</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decision Tree</span></h1>
 </div>
 
 
@@ -645,38 +641,60 @@ $$
 </header>
 
 
-<section id="logistic-regression" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="logistic-regression"><span class="header-section-number">4.1</span> Logistic Regression</h2>
+<section id="decision-tree" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="decision-tree"><span class="header-section-number">5.1</span> Decision Tree</h2>
 <p><span style="color:red;">Fill description</span>.</p>
-<section id="quiz-draw-a-line" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="quiz-draw-a-line"><span class="header-section-number">4.1.1</span> Quiz : Draw a line!</h3>
 </section>
-</section>
-<section id="train-test-split" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="train-test-split"><span class="header-section-number">4.2</span> Train-Test Split</h2>
-<p><span style="color:red;">Fill description</span>.</p>
-<p>First, we will perform a train-test split.</p>
+<section id="train-test-split" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="train-test-split"><span class="header-section-number">5.2</span> Train-Test Split</h2>
+<p>As we have done previosuly under logistic regression, we will first perform a train-test split.</p>
 <div id="qpyodide-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="algorithm" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="algorithm"><span class="header-section-number">4.3</span> Algorithm</h2>
-<p>Next, we will run logistic regression on our training dataset, then compute the performance of the metrics using our dataset and then</p>
+<section id="algorithm" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="algorithm"><span class="header-section-number">5.3</span> Algorithm</h2>
+<p>Next, we will run decision treeon our training dataset, then compute the performance of the metrics using our dataset and then</p>
 <div id="qpyodide-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p>Can you try to delete the class weight and changing the C-value to observe what happened to the performance of the algorithm?</p>
+<div class="callout-title-container flex-fill">
+Try Removing Class Weight, how does the metrics changes?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Accuracy stays the same at 0.89. However, we observe the precision increased and recall decreased. The F1 score stays approximately the same.</p>
+<p><strong>Why Precision Improved?</strong></p>
+<p>Precision increases when the class weight is removed, suggesting that the model makes fewer false positive predictions. This might be because, without class balancing, the model is biased towards the majority class.</p>
+<p><strong>Why Recall Decreased?</strong></p>
+<p>Recall decreases when the class weight is removed, indicating that the model misses more true positive instances. This is critical in medical diagnoses where missing a positive case (false negative) can be detrimental.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Assume <code>class_weight="balanced"</code>, first test with <code>max_depth=None</code>, and then test with <code>max_depth=1</code>, observe the difference in the performance, and also in visualization of the tree?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Reducing <code>max_depth</code> from <code>None</code> to <code>1</code> decreases the recall and F1 score, indicating the model becomes less capable of identifying true positives, likely due to oversimplification. The oversimplication is reflected in the visualization of the tree.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="feature-importance" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="feature-importance"><span class="header-section-number">4.4</span> Feature Importance</h2>
+<section id="visualizing-the-tree" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="visualizing-the-tree"><span class="header-section-number">5.4</span> Visualizing the tree</h2>
 <div id="qpyodide-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p><span class="math inline">\(\,\)</span></p>
@@ -1251,14 +1269,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03_Section_3.html" class="pagination-link" aria-label="Baseline">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Baseline</span></span>
+      <a href="./04_Section_4.html" class="pagination-link" aria-label="Logistic Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05_Section_5.html" class="pagination-link" aria-label="Decision Tree">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Decision Tree</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

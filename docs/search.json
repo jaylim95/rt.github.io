@@ -114,7 +114,17 @@
     "href": "03_Section_3.html",
     "title": "3  Baseline",
     "section": "",
-    "text": "3.1 Building Baseline\nFill description.",
+    "text": "3.1 Building Baseline\nA baseline model serves as a simple reference point for evaluating the performance of more complex models. It represents the minimum level of performance that any model should achieve. Common baselines include predicting the most frequent class or random guessing.\nEstablishing a baseline is crucial because it provides a benchmark to compare against. It helps in understanding whether the added complexity of a model is actually improving performance. If a model does not perform better than the baseline, it indicates that the model might not be useful.\nThis is some starter code to build the baseline models. Do not change the following code. Just run it! :)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Baseline</span>"
+    ]
+  },
+  {
+    "objectID": "03_Section_3.html#building-baseline",
+    "href": "03_Section_3.html#building-baseline",
+    "title": "3  Baseline",
+    "section": "",
+    "text": "Please enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Baseline</span>"
     ]
@@ -124,7 +134,7 @@
     "href": "03_Section_3.html#understanding-the-metrics",
     "title": "3  Baseline",
     "section": "3.2 Understanding the metrics",
-    "text": "3.2 Understanding the metrics\n\n\n\n\n\n\nWhy can’t we blindly trust accuracy?\n\n\n\n\n\nIn our dataset, 30% of the people are diagnosed with pancreatic cancer, and 70% are not. If we rely only on accuracy, our model could just predict everyone as not having cancer and still be 70% accurate. This doesn’t help us identify those who actually have cancer. That’s why we need to look at other metrics like precision and recall to ensure our model is correctly identifying both those with and without the disease.\n\n\n\n\n\n\n\n\n\nWhat is the impact of false positive and false negative in diagnosing pancreas cancer?\n\n\n\n\n\nFalse Positive: The patient doesn’t have pancreatic cancer, but the AI incorrectly diagnoses them with it. This can lead to unnecessary tests and procedures, causing stress and potential harm.\nFalse Negative: The patient has pancreatic cancer, but the AI incorrectly diagnoses them as not having it. This is very dangerous as the patient misses the chance for early treatment, leading to potentially severe consequences.",
+    "text": "3.2 Understanding the metrics\nWe are going to investigate 4 metrics to evalaute the performance of our machine learning algorithms, namely, accuracy, precision, recall and F1 score. We will go through it one-by-one in the following:\n\n3.2.1 Accuracy\nThe ratio of correctly predicted instances to the total instances. Mathematically it is defined as [ =(TP+TN)/Total]\n\n\n\n\n\n\nWhy can’t we blindly trust accuracy?\n\n\n\n\n\nIn our dataset, 30% of the people are diagnosed with pancreatic cancer, and 70% are not. If we rely only on accuracy, our model could just predict everyone as not having cancer and still be 70% accurate. This doesn’t help us identify those who actually have cancer. That’s why we need to look at other metrics like precision and recall to ensure our model is correctly identifying both those with and without the disease.\n\n\n\n\n\n3.2.2 Precision\nBefore we move on to talk about precision, recall & F1 score, we would like you to think about the following problem:\n\n\n\n\n\n\nWhat is the impact of false positive and false negative in diagnosing pancreas cancer?\n\n\n\n\n\nFalse Positive: The patient doesn’t have pancreatic cancer, but the AI incorrectly diagnoses them with it. This can lead to unnecessary tests and procedures, causing stress and potential harm.\nFalse Negative: The patient has pancreatic cancer, but the AI incorrectly diagnoses them as not having it. This is very dangerous as the patient misses the chance for early treatment, leading to potentially severe consequences.\n\n\n\nThus, precision, recall and F1 score are important metrics to help us to get a hollistic picture of our model performance.\nPrecision is defined as the ratio of true positive predictions to the total predicted positives. Mathematically, [ =]\nPrecision tells us how many of the patients predicted to have PDAC actually have the disease. High precision means fewer false positives.\n\n\n3.2.3 Recall\nRecall is defined as the ratio of true positive predictions to the total actual positives. Mathematically, it is defined as\n[ = ]\nRecall (or sensitivity) indicates how many patients with PDAC are correctly identified by the model. High recall means fewer false negatives, which is crucial for medical diagnosis.\n\n\n3.2.4 F1 Score\nF1 Score is the harmonic mean of precision and recall. Mathematically, it is defined as\n[ = 2 ]\nThe F1 Score provides a balance between precision and recall. It is particularly useful when the class distribution is imbalanced, as it considers both false positives and false negatives.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Baseline</span>"
     ]
@@ -134,7 +144,7 @@
     "href": "03_Section_3.html#baseline-1-all-false",
     "title": "3  Baseline",
     "section": "3.3 Baseline 1: All False",
-    "text": "3.3 Baseline 1: All False\nFill description.",
+    "text": "3.3 Baseline 1: All False\nFirst, we will create a baseline around the most frequent class, which in our case, is 0, where we assume all patients do not have cnacer.This baseline mimics a current system where we assume that all patients do not have Pancreatic ductal adenocarcinoma (PDAC).\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nWhy is precision, recall and F1 score are all 0 in our case?\n\n\n\n\n\nPrecision, recall, and F1 score are all zero because the baseline model predicts all patients as negative (no PDAC), resulting in no true positives!\nDid you realize the importance of different metrics in judging performance?",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Baseline</span>"
     ]
@@ -144,7 +154,7 @@
     "href": "03_Section_3.html#baseline-2-random-guess",
     "title": "3  Baseline",
     "section": "3.4 Baseline 2: Random Guess",
-    "text": "3.4 Baseline 2: Random Guess\nFill description.\n\\(\\,\\)",
+    "text": "3.4 Baseline 2: Random Guess\nRandom guessing is a baseline method where predictions are made by randomly assigning classes (positive or negative) without any consideration of the input features. As an analogy, it is like you flipping a coin and randomly assign a patient of its status based on the coins (for example, has cancer if the coin is head, and has no cancer if the coin is tail).\nRandom guessing sets a very low bar for model performance. If a machine learning model cannot outperform random guessing, it indicates that the model has not captured any meaningful patterns from the data. Beating random guessing demonstrates that the model has predictive power and can provide reliable results.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\\(\\,\\)",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Baseline</span>"
     ]
@@ -184,9 +194,59 @@
     "href": "04_Section_4.html#algorithm",
     "title": "4  Logistic Regression",
     "section": "4.3 Algorithm",
-    "text": "4.3 Algorithm\nNext, we will run logistic regression on our training dataset, then compute the performance of the metrics using our dataset and then\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\\(\\,\\)",
+    "text": "4.3 Algorithm\nNext, we will run logistic regression on our training dataset, then compute the performance of the metrics using our dataset and then\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nCan you try to delete the class weight and changing the C-value to observe what happened to the performance of the algorithm?",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Logistic Regression</span>"
+    ]
+  },
+  {
+    "objectID": "04_Section_4.html#feature-importance",
+    "href": "04_Section_4.html#feature-importance",
+    "title": "4  Logistic Regression",
+    "section": "4.4 Feature Importance",
+    "text": "4.4 Feature Importance\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\\(\\,\\)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Logistic Regression</span>"
+    ]
+  },
+  {
+    "objectID": "05_Section_5.html",
+    "href": "05_Section_5.html",
+    "title": "5  Decision Tree",
+    "section": "",
+    "text": "5.1 Decision Tree\nFill description.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "05_Section_5.html#train-test-split",
+    "href": "05_Section_5.html#train-test-split",
+    "title": "5  Decision Tree",
+    "section": "5.2 Train-Test Split",
+    "text": "5.2 Train-Test Split\nAs we have done previosuly under logistic regression, we will first perform a train-test split.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "05_Section_5.html#algorithm",
+    "href": "05_Section_5.html#algorithm",
+    "title": "5  Decision Tree",
+    "section": "5.3 Algorithm",
+    "text": "5.3 Algorithm\nNext, we will run decision treeon our training dataset, then compute the performance of the metrics using our dataset and then\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nTry Removing Class Weight, how does the metrics changes?\n\n\n\n\n\nAccuracy stays the same at 0.89. However, we observe the precision increased and recall decreased. The F1 score stays approximately the same.\nWhy Precision Improved?\nPrecision increases when the class weight is removed, suggesting that the model makes fewer false positive predictions. This might be because, without class balancing, the model is biased towards the majority class.\nWhy Recall Decreased?\nRecall decreases when the class weight is removed, indicating that the model misses more true positive instances. This is critical in medical diagnoses where missing a positive case (false negative) can be detrimental.\n\n\n\n\n\n\n\n\n\nAssume class_weight=\"balanced\", first test with max_depth=None, and then test with max_depth=1, observe the difference in the performance, and also in visualization of the tree?\n\n\n\n\n\nReducing max_depth from None to 1 decreases the recall and F1 score, indicating the model becomes less capable of identifying true positives, likely due to oversimplification. The oversimplication is reflected in the visualization of the tree.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Decision Tree</span>"
+    ]
+  },
+  {
+    "objectID": "05_Section_5.html#visualizing-the-tree",
+    "href": "05_Section_5.html#visualizing-the-tree",
+    "title": "5  Decision Tree",
+    "section": "5.4 Visualizing the tree",
+    "text": "5.4 Visualizing the tree\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\\(\\,\\)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Decision Tree</span>"
     ]
   }
 ]
