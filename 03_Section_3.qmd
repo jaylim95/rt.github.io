@@ -1,0 +1,55 @@
+---
+title: Baseline
+format: html
+filters:
+  - pyodide
+---
+
+This is a pyodide-enabled code cell in a Quarto HTML document.
+
+```{pyodide-python}
+import pyodide
+import pandas as pd
+
+raw_data = pd.read_csv("cleaned_dataset.csv")
+```
+
+## Building Baseline
+
+[Fill description]{style="color:red;"}.
+
+
+
+
+## Understanding the metrics
+
+::: {.callout-note collapse="true" appearance="simple"}
+
+## Why can't we blindly trust accuracy?
+
+In our dataset, 30% of the people are diagnosed with pancreatic cancer, and 70% are not. If we rely only on accuracy, our model could just predict everyone as not having cancer and still be 70% accurate. This doesn't help us identify those who actually have cancer. That's why we need to look at other metrics like precision and recall to ensure our model is correctly identifying both those with and without the disease.
+
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+
+## What is the impact of false positive and false negative in diagnosing pancreas cancer?
+
+**False Positive:** The patient doesn't have pancreatic cancer, but the AI incorrectly diagnoses them with it. This can lead to unnecessary tests and procedures, causing stress and potential harm.
+
+**False Negative:** The patient has pancreatic cancer, but the AI incorrectly diagnoses them as not having it. This is very dangerous as the patient misses the chance for early treatment, leading to potentially severe consequences.
+
+:::
+
+
+## Baseline 1: All False
+
+[Fill description]{style="color:red;"}.
+
+
+## Baseline 2: Random Guess
+
+[Fill description]{style="color:red;"}.
+
+
+$\,$
