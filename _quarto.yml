@@ -20,6 +20,10 @@ book:
     - 03_Section_3.qmd
     - 04_Section_4.qmd
     - 05_Section_5.qmd
+  
+
+include-after-body:
+  text: <script type="text/javascript" src="page-nav-foot.js"></script>
 
 
 bibliography: references.bib
